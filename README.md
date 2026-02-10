@@ -1,20 +1,6 @@
 # delta Quickstart
 
-## Configure
-
-Set the right values in [`domain.yaml`](./domain.yaml).
-
-## Run Domain
-
-Run the generic domain service:
-
-```sh
-./run_domain.sh
-```
-
-## Setup TypeScript
-
-In another terminal:
+## Setup
 
 ```
 npm install
@@ -24,6 +10,15 @@ Generate some private keys to get started:
 
 ```
 ./keygen.ts
+```
+
+## Run Domain
+
+Set the right values in [`domain.yaml`](./domain.yaml) and run the generic
+domain service:
+
+```sh
+./run_domain.sh
 ```
 
 ## Mint a new token

@@ -5,6 +5,11 @@ if ! command -v docker &> /dev/null; then
   exit 1
 fi
 
+if [ ! -f keys/domain_key.json ]; then
+  echo "Error: keys/domain_key.json not found. Run ./keygen.ts first."
+  exit 1
+fi
+
 docker run \
   -p 3000:3000 \
   -v $(pwd)/domain.yaml:/app/domain.yaml \
