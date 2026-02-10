@@ -9,4 +9,4 @@ docker run \
   -p 3000:3000 \
   -v $(pwd)/domain.yaml:/app/domain.yaml \
   -v $(pwd)/keys/domain_key.json:/app/domain_key.json \
-  ghcr.io/repyh-labs/delta-generic-domain:latest
+  ghcr.io/repyh-labs/delta-generic-domain:0.6.7.0
