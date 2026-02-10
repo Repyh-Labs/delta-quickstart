@@ -1,0 +1,22 @@
+{
+  "name": "delta-quickstart",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "codegen": "npx openapi-typescript-codegen --input http://localhost:3000/openapi.json --output src/generated",
+    "keygen": "tsx src/keygen.ts",
+    "mint": "tsx src/mint.ts",
+    "debit": "tsx src/debit.ts"
+  },
+  "dependencies": {
+    "@noble/ed25519": "^3.0.0",
+    "@repyh-labs/delta-signing": "^0.5",
+    "bs58": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "openapi-typescript-codegen": "^0.29.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.7.0"
+  }
+}

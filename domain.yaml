@@ -1,0 +1,16 @@
+# Unique shard identifier for this domain
+#
+# The shard is bound to a domain operator via the domain agreement
+# https://docs.delta.network/docs/learn/domains#domain-agreement
+shard: 123
+
+# Path to the domain operator's ed25519 keypair (JSON-encoded)
+keypair: /app/domain_key.json
+
+# Base layer RPC endpoint, uses a mock if commented out
+# rpc_url: http://devnet.repyhlabs.dev:9000
+
+app:
+  # Port for the HTTP API server of the generic domain
+  # Keep this at 3000 for usage in Docker
+  api_port: 3000
