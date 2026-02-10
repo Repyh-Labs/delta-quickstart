@@ -20,7 +20,7 @@ const debitAllowance: DebitAllowance = {
   debited_shard: shard,
   credited: `${recipient_key.owner()},${shard}`,
   allowances: {
-    [tokenId]: { Fungible: 50 },
+    [tokenId]: { Fungible: 33 },
   },
 }
 
