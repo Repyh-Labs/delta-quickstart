@@ -3,10 +3,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "codegen": "npx openapi-typescript-codegen --input http://localhost:3000/openapi.json --output src/generated",
-    "keygen": "tsx src/keygen.ts",
-    "mint": "tsx src/mint.ts",
-    "debit": "tsx src/debit.ts"
+    "codegen": "npx openapi-typescript-codegen --input http://localhost:3000/openapi.json --output src/generated"
   },
   "dependencies": {
     "@noble/ed25519": "^3.0.0",

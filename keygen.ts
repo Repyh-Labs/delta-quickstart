@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env -S npx tsx
 
 import { writeFileSync, mkdirSync } from "fs"
 import { keygenAsync } from "@noble/ed25519"

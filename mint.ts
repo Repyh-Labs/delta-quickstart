@@ -1,9 +1,9 @@
-#!/usr/bin/env node
+#!/usr/bin/env -S npx tsx
 
 import { FungibleMint } from "@repyh-labs/delta-signing"
-import { IntentsService } from "./generated/services/IntentsService"
-import { loadSigner } from "./lib"
-import { OpenAPI } from "./generated/core/OpenAPI"
+import { IntentsService } from "./src/generated/services/IntentsService"
+import { loadSigner } from "./src"
+import { OpenAPI } from "./src/generated/core/OpenAPI"
 
 OpenAPI.BASE = "http://localhost:3000"
 

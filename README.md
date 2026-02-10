@@ -14,29 +14,31 @@ Run the generic domain service:
 
 ## Setup TypeScript
 
+In another terminal:
+
 ```
 npm install
 ```
 
-Then, generate some private keys to get started:
+Generate some private keys to get started:
 
 ```
-npm run keygen
+./keygen.ts
 ```
 
 ## Mint a new token
 
-```
-npm run mint
-```
+You can change the details of the token by editing [`mint.ts`](./mint.ts).
 
-You can change the details of the token by editing [`mint.ts`](./src/mint.ts).
+```
+./mint.ts
+```
 
 ## Transfer token with a debit
 
-```
-npm run debit
-```
-
 You can change the details of the transfer by editing
-[`debit.ts`](./src/debit.ts).
+[`debit.ts`](./debit.ts).
+
+```
+./debit.ts
+```
