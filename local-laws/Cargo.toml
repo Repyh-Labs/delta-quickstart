@@ -1,0 +1,8 @@
+[package]
+name = "quickstart-local-laws"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+delta_domain_sdk = { version = "0.6.5", registry = "delta" }
+sp1-zkvm = { version = "5.2" }
