@@ -1,5 +1,10 @@
 # delta Quickstart
 
+**Prerequisites**
+
+- Node.js and npm installed
+- Docker installed and running
+
 ### Setup
 
 1. Install dependencies
