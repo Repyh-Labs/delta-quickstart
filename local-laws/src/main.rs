@@ -21,18 +21,15 @@ impl LocalLaws for MaxAmountLaw {
     type Input<'a> = Amounts;
 
     fn validate<'a>(
-        verifiables: &[VerifiableWithDiffs],
+        transactions: &[VerifiableWithDiffs],
         _context: &VerificationContext,
         input: &Amounts,
     ) -> Result<(), LocalLawsError> {
-        let max_spending = input.max;
-        let min_spending = input.min;
-
-        for verifiable in verifiables {
-            if let VerifiableType::DebitAllowance(debit_allowance) = &verifiable.verifiable {
+        for tx in transactions {
+            if let VerifiableType::DebitAllowance(debit_allowance) = &tx.verifiable {
                 for (&token_kind, amount) in &debit_allowance.payload().content().allowances {
                     if let AllowanceAmount::Fungible(amount) = amount
-                        && (*amount > max_spending || *amount < min_spending)
+                        && (*amount > input.max || *amount < input.min)
                     {
                         return Err(LocalLawsError::new(format!(
                             "Debit amount for token {token_kind} must be between {min_spending} and {max_spending}, was {amount}"
