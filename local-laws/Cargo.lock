@@ -1690,6 +1690,7 @@ name = "quickstart-local-laws"
 version = "0.1.0"
 dependencies = [
  "delta_domain_sdk",
+ "serde",
  "sp1-zkvm",
 ]
 
