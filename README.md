@@ -1,47 +1,51 @@
 # delta Quickstart
 
-## Setup
+### Setup
 
-```sh
-npm install
-```
+1. Install dependencies
+   ```sh
+   npm install
+   ```
+2. Generate private keys for test users and token mint vaults
+   ```sh
+   ./keygen.ts
+   ```
 
-Generate some private keys to get started:
+### Run the generic domain
 
-```sh
-./keygen.ts
-```
+In another terminal, run the below to
 
-## Run Domain
-
-Set the right values in [`domain.yaml`](./domain.yaml) and run the generic
-domain service:
+- run the the generic domain docker image using a default configuration and mock
+  network defined in `domain.yaml`
+- start listening for incoming transactions to the domain
 
 ```sh
 ./run_domain.sh
 ```
 
-## Mint a new token
+### Submit user-level transactions
 
-You can change the details of the token by editing [`mint.ts`](./mint.ts).
+To **mint a new fungible token** on the domain, run the below to
+
+- use the fungible token mint details defined in `mint.ts` to create a mint transaction
+- use the pre-generated mint key to sign this transaction
+- submit the signed message to the domain for execution
 
 ```sh
 ./mint.ts
 ```
 
-## Transfer token with a debit
+To **transfer tokens between users**, run the below to
 
-You can change the details of the transfer by editing
-[`debit.ts`](./debit.ts).
+- use the debit allowance details defined in `debit.ts` to create a debit transaction
+- use a pre-generated user key to sign this transaction
+- submit the signed message to the domain for execution
 
 ```sh
 ./debit.ts
 ```
 
-## See result
-
-To finish, see the vaults of the generated keys with their
-funds:
+To **view the vaults** and contents on the domain, run
 
 ```sh
 ./vaults.ts
