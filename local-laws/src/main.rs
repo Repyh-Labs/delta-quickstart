@@ -32,7 +32,8 @@ impl LocalLaws for MaxAmountLaw {
                         && (*amount > input.max || *amount < input.min)
                     {
                         return Err(LocalLawsError::new(format!(
-                            "Debit amount for token {token_kind} must be between {min_spending} and {max_spending}, was {amount}"
+                            "Debit amount for token {token_kind} must be between {} and {}, was {amount}",
+                            input.min, input.max
                         )));
                     }
                 }
