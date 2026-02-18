@@ -1,10 +1,11 @@
 #![no_main]
 
-use delta_domain_sdk::{
-    base::verifiable::{
+use bincode::serde::decode_from_slice;
+use delta_local_laws::{
+    LocalLaws, LocalLawsError,
+    verifiable::types::{
         VerifiableType, VerifiableWithDiffs, VerificationContext, debit_allowance::AllowanceAmount,
     },
-    proving::local_laws::{LocalLaws, LocalLawsError},
 };
 
 #[derive(serde::Serialize, serde::Deserialize)]
@@ -18,22 +19,25 @@ struct Amounts {
 struct MaxAmountLaw;
 
 impl LocalLaws for MaxAmountLaw {
-    type Input<'a> = Amounts;
+    // Must be Vec<u8> for usage with the delta-generic-domain docker image
+    type Input<'a> = Vec<u8>;
 
     fn validate<'a>(
         transactions: &[VerifiableWithDiffs],
         _context: &VerificationContext,
-        input: &Amounts,
+        input: &Self::Input<'a>,
     ) -> Result<(), LocalLawsError> {
+        let (Amounts { min, max }, _) = decode_from_slice(input, bincode::config::standard())
+            .map_err(|e| LocalLawsError::new(format!("Could not deserialize input: {e}")))?;
+
         for tx in transactions {
             if let VerifiableType::DebitAllowance(debit_allowance) = &tx.verifiable {
-                for (&token_kind, amount) in &debit_allowance.payload().content().allowances {
-                    if let AllowanceAmount::Fungible(amount) = amount
-                        && (*amount > input.max || *amount < input.min)
+                for (&token_kind, allowance) in &debit_allowance.payload().content().allowances {
+                    if let AllowanceAmount::Fungible(amount) = allowance
+                        && (*amount < min || max < *amount)
                     {
                         return Err(LocalLawsError::new(format!(
-                            "Debit amount for token {token_kind} must be between {} and {}, was {amount}",
-                            input.min, input.max
+                            "Debit amount for token {token_kind} must be between {min} and {max}, was {amount}",
                         )));
                     }
                 }
@@ -43,18 +47,4 @@ impl LocalLaws for MaxAmountLaw {
     }
 }
 
-const AMOUNTS: Amounts = Amounts { min: 10, max: 100 };
-
-sp1_zkvm::entrypoint!(main);
-fn main() {
-    // conform to the standard input format
-    let verifiables = sp1_zkvm::io::read::<Vec<VerifiableWithDiffs>>();
-    let verification_context = sp1_zkvm::io::read::<VerificationContext>();
-
-    MaxAmountLaw::validate(&verifiables, &verification_context, &AMOUNTS)
-        .expect("The local laws are not satisfied by the verifiables.");
-
-    // committing the inputs
-    sp1_zkvm::io::commit(&verifiables);
-    sp1_zkvm::io::commit(&verification_context);
-}
+delta_local_laws::entrypoint!(MaxAmountLaw);

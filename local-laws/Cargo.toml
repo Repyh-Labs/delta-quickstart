@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-delta_domain_sdk = { version = "0.6.5", registry = "delta" }
-sp1-zkvm = { version = "5.2" }
+delta_local_laws = { version = "0.6.10", registry = "delta" }
+sp1-zkvm = "5.2"
 serde = { version = "1", features = ["derive"] }
+bincode = { version = "2", features = ["serde"] }
