@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@noble/ed25519": "^3.0.0",
-    "@repyh-labs/delta-signing": "^0.5",
+    "@repyh-labs/delta-signing": "^0.6",
     "bs58": "^6.0.0"
   },
   "devDependencies": {

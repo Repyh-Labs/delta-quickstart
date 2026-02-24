@@ -58,13 +58,15 @@ export class SdlsService {
         });
     }
     /**
-     * Start proving a specific SDL
+     * Start proving a specific SDL with optional local laws input
      * @param sdlHash Hash of the SDL to prove
+     * @param requestBody Optional serialized input data for configured local laws
      * @returns any Proving started successfully
      * @throws ApiError
      */
     public static sdlsProve(
         sdlHash: string,
+        requestBody?: any[] | null,
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',
@@ -72,6 +74,8 @@ export class SdlsService {
             path: {
                 'sdl_hash': sdlHash,
             },
+            body: requestBody,
+            mediaType: 'application/octet-stream',
             errors: {
                 500: `Internal error`,
             },

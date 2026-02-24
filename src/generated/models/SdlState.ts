@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * The state an SDL can reach on the local-state
+ * The state an SDL can reach on the local-state.
  */
 export type SdlState = ('Submitted' | 'Proving' | 'Proven' | 'ProofSubmitted' | 'BaseLayerApplied' | 'BaseLayerFailed' | {
     /**

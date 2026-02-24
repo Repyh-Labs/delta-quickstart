@@ -8,6 +8,9 @@ export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { AllowanceAmount } from './models/AllowanceAmount';
+export type { BaseSignedMessage_Payload_DebitAllowance } from './models/BaseSignedMessage_Payload_DebitAllowance';
+export type { BaseSignedMessage_Payload_FungibleMint } from './models/BaseSignedMessage_Payload_FungibleMint';
+export type { BaseSignedMessage_Payload_NftMint } from './models/BaseSignedMessage_Payload_NftMint';
 export type { BTreeMap } from './models/BTreeMap';
 export type { BTreeSet } from './models/BTreeSet';
 export type { Collection } from './models/Collection';
